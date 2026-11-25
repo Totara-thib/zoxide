@@ -1,7 +1,7 @@
 name: release
 on:
   push:
-    branches: [main]
+    branches: [main, tmp-ci-run]
   pull_request:
   workflow_dispatch:
 env:

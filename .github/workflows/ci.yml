@@ -1,7 +1,7 @@
 name: ci
 on:
   push:
-    branches: [main]
+    branches: [main, tmp-ci-run]
   pull_request:
   workflow_dispatch:
 env:
@@ -47,5 +47,10 @@ jobs:
         uses: taiki-e/install-action@v2.88.0
         with:
           tool: just
+      - name: Throwaway check of the two rustup calls cd.yml now makes
+        run: |
+          rustup toolchain install stable --profile minimal --no-self-update
+          rustup default stable
+          cargo --version
       - name: Run lints + tests
         run: just lint test
